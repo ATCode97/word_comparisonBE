@@ -1,0 +1,10 @@
+DROP DATABASE IF EXISTS dbwords_test;
+
+
+DROP DATABASE IF EXISTS dbwords;
+
+
+CREATE DATABASE dbwords_test;
+
+
+CREATE DATABASE dbwords;
