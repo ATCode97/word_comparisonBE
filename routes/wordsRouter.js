@@ -1,6 +1,6 @@
-const { get } = require("./apiRouter");
-
 const wordsRouter = require("express").Router();
+
+const { handle405s } = require("../errors");
 
 const {
   getAllWords,
@@ -10,7 +10,7 @@ const {
   getAllComparedAt,
 } = require("../controller/words");
 
-wordsRouter.route("/").get(getAllWords).post(postWords);
+wordsRouter.route("/").get(getAllWords).post(postWords).all(handle405s);
 
 // wordsRouter.route("/primary_words").get(getAllPrimaryWords);
 // wordsRouter.route("/secondary_words").get(getAllSecondaryWords);

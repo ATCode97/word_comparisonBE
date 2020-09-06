@@ -9,6 +9,28 @@ chai.use(require("sams-chai-sorted"));
 describe("/api", () => {
   beforeEach(() => connection.seed.run());
   after(() => connection.destroy());
+  it("status 404: will catch any invalid paths after /api", () => {
+    return request(app)
+      .get("/api/not-a-valid-path")
+      .expect(404)
+      .then(({ body: { msg } }) => {
+        expect(msg).to.equal("invalid pathway");
+      });
+  });
+  describe("invalids methods", () => {
+    it("status 405: methods not allowed", () => {
+      const invalidMethods = ["delete", "put", "patch"];
+      const promiseArray = invalidMethods.map((method) => {
+        return request(app)
+          [method]("/api")
+          .expect(405)
+          .then(({ body: { msg } }) => {
+            expect(msg).to.equal("method not allowed");
+          });
+      });
+      return Promise.all(promiseArray);
+    });
+  });
   describe("/words", () => {
     describe("GET methods", () => {
       it("status 200: return is an object of array that has the correct length", () => {
@@ -95,6 +117,20 @@ describe("/api", () => {
           .then(({ body: { msg } }) => {
             expect(msg).to.equal("bad request");
           });
+      });
+    });
+    describe("invalids methods", () => {
+      it("status 405: methods not allowed", () => {
+        const invalidMethods = ["delete", "put", "patch"];
+        const promiseArray = invalidMethods.map((method) => {
+          return request(app)
+            [method]("/api/words")
+            .expect(405)
+            .then(({ body: { msg } }) => {
+              expect(msg).to.equal("method not allowed");
+            });
+        });
+        return Promise.all(promiseArray);
       });
     });
   });
