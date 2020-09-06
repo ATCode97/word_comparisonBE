@@ -20,5 +20,22 @@ describe("/api", () => {
           });
       });
     });
+    describe("POST method", () => {
+      it("status 201 - successful post request", () => {
+        return request(app)
+          .post("/api/words")
+          .expect(201)
+          .send({
+            primary_words: "dad",
+            secondary_words: "dad",
+          })
+          .then(({ body: { wordObj } }) => {
+            expect(wordObj.wordComparison_id).to.equal(6);
+            expect(wordObj.primary_words).to.eql("dad");
+            expect(wordObj.secondary_words).to.eql("dad");
+            expect(wordObj).to.contain.keys("compared_at");
+          });
+      });
+    });
   });
 });

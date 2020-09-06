@@ -1,27 +1,27 @@
 module.exports = [
   {
-    primary_word: "Hello",
-    secondary_word: "World",
+    primary_words: "Hello",
+    secondary_words: "World",
     compared_at: 1542284514171,
   },
   {
-    primary_word: "silent",
-    secondary_word: "listen",
+    primary_words: "silent",
+    secondary_words: "listen",
     compared_at: 1416140514171,
   },
   {
-    primary_word: "Anna",
-    secondary_word: "Keen",
+    primary_words: "Anna",
+    secondary_words: "Keen",
     compared_at: 1289996514171,
   },
   {
-    primary_word: "Civil",
-    secondary_word: "Mom",
+    primary_words: "Civil",
+    secondary_words: "Mom",
     compared_at: 911564514171,
   },
   {
-    primary_word: "Civic",
-    secondary_word: "Civic",
+    primary_words: "Civic",
+    secondary_words: "Civic",
     compared_at: 785420514171,
   },
 ];

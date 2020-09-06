@@ -8,8 +8,8 @@ describe("formatDates", () => {
   it("will format the date of an object array that contains one value", () => {
     const input = [
       {
-        primary_word: "Hello",
-        secondary_word: "World",
+        primary_words: "Hello",
+        secondary_words: "World",
         compared_at: 1542284514171,
       },
     ];
@@ -20,13 +20,13 @@ describe("formatDates", () => {
   it("will format the date of an object array that contains more than one value", () => {
     const input = [
       {
-        primary_word: "Hello",
-        secondary_word: "World",
+        primary_words: "Hello",
+        secondary_words: "World",
         compared_at: 1542284514171,
       },
       {
-        primary_word: "silent",
-        secondary_word: "listen",
+        primary_words: "silent",
+        secondary_words: "listen",
         compared_at: 1416140514171,
       },
     ];
@@ -38,8 +38,8 @@ describe("formatDates", () => {
   it("MUTATION -won't mutate the original array", () => {
     const input = [
       {
-        primary_word: "silent",
-        secondary_word: "listen",
+        primary_words: "silent",
+        secondary_words: "listen",
         compared_at: 1416140514171,
       },
     ];
@@ -47,8 +47,8 @@ describe("formatDates", () => {
 
     expect(input).to.eql([
       {
-        primary_word: "silent",
-        secondary_word: "listen",
+        primary_words: "silent",
+        secondary_words: "listen",
         compared_at: 1416140514171,
       },
     ]);
