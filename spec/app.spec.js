@@ -4,13 +4,14 @@ const app = require("../app");
 const request = require("supertest");
 const chai = require("chai");
 const { expect } = chai;
+chai.use(require("sams-chai-sorted"));
 
 describe("/api", () => {
   beforeEach(() => connection.seed.run());
   after(() => connection.destroy());
   describe("/words", () => {
     describe("GET methods", () => {
-      it("status 200 - return is an object of array that has the correct length", () => {
+      it("status 200: return is an object of array that has the correct length", () => {
         return request(app)
           .get("/api/words")
           .expect(200)
@@ -19,9 +20,33 @@ describe("/api", () => {
             expect(wordsObj).to.have.length(5);
           });
       });
+      it("status 200: can sort queries by compared_at in descending order by default", () => {
+        return request(app)
+          .get("/api/words?sort_by=compared_at")
+          .expect(200)
+          .then(({ body: { wordsObj } }) => {
+            expect(wordsObj).to.be.descendingBy("compared_at");
+          });
+      });
+      it("status 200: can sort queries by in an ascending order", () => {
+        return request(app)
+          .get("/api/words?order=asc")
+          .expect(200)
+          .then(({ body: { wordsObj } }) => {
+            expect(wordsObj).to.be.ascendingBy("compared_at");
+          });
+      });
+      it("status 400: return an error message if met with an invalid sort_by request", () => {
+        return request(app)
+          .get("/api/words?sort_by=invalid")
+          .expect(400)
+          .then(({ body: { msg } }) => {
+            expect(msg).to.equal("bad request");
+          });
+      });
     });
     describe("POST method", () => {
-      it("status 201 - successful post request", () => {
+      it("status 201: successful post request", () => {
         return request(app)
           .post("/api/words")
           .expect(201)
@@ -34,6 +59,41 @@ describe("/api", () => {
             expect(wordObj.primary_words).to.eql("dad");
             expect(wordObj.secondary_words).to.eql("dad");
             expect(wordObj).to.contain.keys("compared_at");
+          });
+      });
+      it("status 400: the body has an extra key", () => {
+        return request(app)
+          .post("/api/words")
+          .send({
+            primary_words: "dad",
+            secondary_words: "dad",
+            void: "void",
+          })
+          .expect(400)
+          .then(({ body: { msg } }) => {
+            expect(msg).to.equal("bad request");
+          });
+      });
+      it("status 400: the send body is missing secondary_word key", () => {
+        return request(app)
+          .post("/api/words")
+          .send({
+            primary_words: "dad",
+          })
+          .expect(400)
+          .then(({ body: { msg } }) => {
+            expect(msg).to.equal("bad request");
+          });
+      });
+      it("status 400: the send body is missing primary_word key", () => {
+        return request(app)
+          .post("/api/words")
+          .send({
+            secondary_words: "dad",
+          })
+          .expect(400)
+          .then(({ body: { msg } }) => {
+            expect(msg).to.equal("bad request");
           });
       });
     });

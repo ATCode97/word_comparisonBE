@@ -7,13 +7,11 @@ const {
 } = require("../model/words");
 
 exports.getAllWords = (req, res, next) => {
-  fetchAllWords()
+  fetchAllWords(req.query)
     .then((wordsObj) => {
       res.status(200).send({ wordsObj });
     })
-    .catch((err) => {
-      console.log(err);
-    });
+    .catch(next);
 };
 
 exports.postWords = (req, res, next) => {
@@ -22,9 +20,7 @@ exports.postWords = (req, res, next) => {
     .then((wordObj) => {
       res.status(201).send({ wordObj });
     })
-    .catch((err) => {
-      console.log(err);
-    });
+    .catch(next);
 };
 
 // exports.getAllPrimaryWords = (req, res, next) => {
