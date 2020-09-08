@@ -22,21 +22,3 @@ exports.postWords = (req, res, next) => {
     })
     .catch(next);
 };
-
-// exports.getAllPrimaryWords = (req, res, next) => {
-//   fetchAllPrimaryWords()
-//     .then((wordsObj) => {})
-//     .catch((err) => {});
-// };
-
-// exports.getAllSecondaryWords = (req, res, next) => {
-//   fetchAllSecondaryWords()
-//     .then((wordsObj) => {})
-//     .catch((err) => {});
-// };
-
-// exports.getAllComparedAt = (req, res, next) => {
-//   fetchAllComparedAt()
-//     .then((wordsObj) => {})
-//     .catch((err) => {});
-// };

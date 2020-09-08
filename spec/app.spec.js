@@ -42,14 +42,6 @@ describe("/api", () => {
             expect(wordsObj).to.have.length(5);
           });
       });
-      it("status 200: can sort queries by compared_at in descending order by default", () => {
-        return request(app)
-          .get("/api/words?sort_by=compared_at")
-          .expect(200)
-          .then(({ body: { wordsObj } }) => {
-            expect(wordsObj).to.be.descendingBy("compared_at");
-          });
-      });
       it("status 200: can sort queries by in an ascending order", () => {
         return request(app)
           .get("/api/words?order=asc")
