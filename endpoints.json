@@ -4,7 +4,7 @@
   },
   "GET /api/words": {
     "description": "serves an array of all comparison that have taken place, defaulted to a descending order",
-    "queries": ["order", "sort_by"],
+    "queries": ["order"],
     "exampleResponse": {
       "wordsObj": [
         {
@@ -17,60 +17,23 @@
     }
   },
   "GET /api/words?order=asc": {
-    "description": "serves an array of all comparison that have taken place in ascending order",
+    "description": "serves an array of all comparison that have taken place",
     "queries": ["order"],
     "exampleResponse": {
       "wordsObj": [
         {
-          "wordComparison_id": 1,
-          "primary_words": "listen",
-          "secondary_words": "silent",
-          "compared_at": "2020-09-07T21:34:54.557Z"
-        },
-        {
-          "wordComparison_id": 2,
-          "primary_words": "hello",
-          "secondary_words": "bye bye",
-          "compared_at": "2020-09-07T21:35:23.485Z"
-        },
-        {
-          "wordComparison_id": 3,
-          "primary_words": "hello",
-          "secondary_words": "hello",
-          "compared_at": "2020-09-07T21:37:15.196Z"
+          "wordComparison_id": 38,
+          "primary_words": "tar",
+          "secondary_words": "rat",
+          "compared_at": "2020-09-08T15:27:59.428Z"
         }
       ]
-    },
-    "GET /api/words?sort_by=compared_at": {
-      "description": "an sort queries by compared_at in descending order by default",
-      "queries": ["sort_by"],
-      "exampleResponse": {
-        "wordsObj": [
-          {
-            "wordComparison_id": 1,
-            "primary_words": "listen",
-            "secondary_words": "silent",
-            "compared_at": "2020-09-07T21:34:54.557Z"
-          },
-          {
-            "wordComparison_id": 2,
-            "primary_words": "hello",
-            "secondary_words": "bye bye",
-            "compared_at": "2020-09-07T21:35:23.485Z"
-          },
-          {
-            "wordComparison_id": 3,
-            "primary_words": "hello",
-            "secondary_words": "hello",
-            "compared_at": "2020-09-07T21:37:15.196Z"
-          }
-        ]
-      }
+    }
   },
   "POST /api/words": {
     "description": "post object into db",
     "examplePost": {
-      "wordsObj": [
+      "transaction_id": [
         {
           "primary_words": "tar",
           "secondary_words": "rat"
