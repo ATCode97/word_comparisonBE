@@ -45,7 +45,7 @@
   "POST /api/words": {
     "description": "post object into db",
     "examplePost": {
-      "transaction_id": [
+      "wordsObj": [
         {
           "primary_words": "tar",
           "secondary_words": "rat"
