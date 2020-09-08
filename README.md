@@ -24,6 +24,9 @@ responds with a json representation of all the available endpoints of the api
 
 responds with an array of objects that contains and a list of primary words and secondary words that have been posted on the frontend
 
+- `sort_by`, which sorts the words by created_at
+- `order`, which can be set to `asc` or `desc` for ascending or descending (defaults to descending)
+
 https://wordcomparisonbe.herokuapp.com/api/words
 
 ### POST words - /api/words

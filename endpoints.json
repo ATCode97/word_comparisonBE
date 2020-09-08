@@ -40,7 +40,32 @@
           "compared_at": "2020-09-07T21:37:15.196Z"
         }
       ]
-    }
+    },
+    "GET /api/words?sort_by=compared_at": {
+      "description": "an sort queries by compared_at in descending order by default",
+      "queries": ["sort_by"],
+      "exampleResponse": {
+        "wordsObj": [
+          {
+            "wordComparison_id": 1,
+            "primary_words": "listen",
+            "secondary_words": "silent",
+            "compared_at": "2020-09-07T21:34:54.557Z"
+          },
+          {
+            "wordComparison_id": 2,
+            "primary_words": "hello",
+            "secondary_words": "bye bye",
+            "compared_at": "2020-09-07T21:35:23.485Z"
+          },
+          {
+            "wordComparison_id": 3,
+            "primary_words": "hello",
+            "secondary_words": "hello",
+            "compared_at": "2020-09-07T21:37:15.196Z"
+          }
+        ]
+      }
   },
   "POST /api/words": {
     "description": "post object into db",
