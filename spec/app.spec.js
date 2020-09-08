@@ -50,14 +50,6 @@ describe("/api", () => {
             expect(wordsObj).to.be.ascendingBy("compared_at");
           });
       });
-      it("status 400: return an error message if met with an invalid sort_by request", () => {
-        return request(app)
-          .get("/api/words?sort_by=invalid")
-          .expect(400)
-          .then(({ body: { msg } }) => {
-            expect(msg).to.equal("bad request");
-          });
-      });
     });
     describe("POST method", () => {
       it("status 201: successful post request", () => {

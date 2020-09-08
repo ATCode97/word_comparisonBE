@@ -1,10 +1,10 @@
 const connection = require("../db/connection");
 
-exports.fetchAllWords = ({ order = "desc" }) => {
+exports.fetchAllWords = ({ sort_by = "compared_at", order = "desc" }) => {
   return connection
     .select("*")
     .from("tblWords")
-    .orderBy(order)
+    .orderBy(sort_by, order)
     .returning("*")
     .then((words) => {
       return words;
