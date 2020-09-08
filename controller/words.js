@@ -1,10 +1,4 @@
-const {
-  fetchAllWords,
-  addWords,
-  fetchAllPrimaryWords,
-  fetchAllSecondaryWords,
-  fetchAllComparedAt,
-} = require("../model/words");
+const { fetchAllWords, addWords } = require("../model/words");
 
 exports.getAllWords = (req, res, next) => {
   fetchAllWords(req.query)
